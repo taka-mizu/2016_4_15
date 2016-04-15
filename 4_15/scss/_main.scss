@@ -1,0 +1,54 @@
+@charset "UTF-8";
+//使うcssを書く
+/* /////////////////////////////
+///													 ///
+///このCSSはSCSSで書かれています///
+///													 ///
+//////////////////////////////*/
+#header {
+	width: 90%;
+	height: 100px;
+	margin: auto;
+	background-color: $main-color;
+	h1 {
+		padding: 1.6rem;
+	}
+}
+
+nav {
+	width: 20%;
+	margin: 2% 5%;
+	float: left;
+	background-color: $main-light-color;
+	ul {
+		list-style: none;
+	}
+}
+
+main {
+	width: 65%;
+	padding: 1rem;
+	margin: 2% 5% 2% 0;
+	box-sizing: border-box;
+	float: left;
+	background-color: $main-dark-color;
+	article {
+		width: 90%;
+		margin: auto;
+		color: white;
+		section {
+			width: 90%;
+			margin: auto;
+			color: black;
+			background-color: $main-light-color;
+		}
+	}
+}
+
+footer {
+	width: 90%;
+	height: 100px;
+	margin: 2% 5%;
+	clear: both;
+	background-color: $accent-color;
+}

@@ -1,0 +1,47 @@
+@charset "UTF-8";
+/* /////////////////////////////
+///													 ///
+///このCSSはSCSSで書かれています///
+///													 ///
+//////////////////////////////*/
+#header {
+  width: 90%;
+  height: 100px;
+  margin: auto;
+  background-color: #ffa600; }
+#header h1 {
+  padding: 1.6rem; }
+
+nav {
+  width: 20%;
+  margin: 2% 5%;
+  float: left;
+  background-color: #ffdb99; }
+nav ul {
+  list-style: none; }
+
+main {
+  width: 65%;
+  padding: 1rem;
+  margin: 2% 5% 2% 0;
+  box-sizing: border-box;
+  float: left;
+  background-color: #664200; }
+main article {
+  width: 90%;
+  margin: auto;
+  color: white; }
+main article section {
+  width: 90%;
+  margin: auto;
+  color: black;
+  background-color: #ffdb99; }
+
+footer {
+  width: 90%;
+  height: 100px;
+  margin: 2% 5%;
+  clear: both;
+  background-color: #ccc; }
+
+/*# sourceMappingURL=style.css.map */

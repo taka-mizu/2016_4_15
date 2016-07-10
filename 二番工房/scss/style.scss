@@ -1,0 +1,9 @@
+@charset "UTF-8";
+//リセット
+@import "reset.scss";
+
+//変数やmixinの定義
+@import "setting.scss";
+
+//スタイルの適用
+@import "main.scss";

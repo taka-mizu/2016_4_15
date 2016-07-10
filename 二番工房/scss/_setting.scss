@@ -1,0 +1,111 @@
+@charset "UTF-8";
+// 変数やmixinを書く
+
+// ベンダープレフィックスを付与する
+$prefixList: -webkit-, -moz-, -ms-, -o-, null;
+
+// 変数 色
+$main-color: #4c4948;
+$main-light-color: lighten($main-color,15%);
+$main-dark-color: darken($main-color,15%);
+$accent-color: #ccc;
+$accent-light-color: lighten($accent-color,30%);
+$accent-dark-color: darken($accent-color,30%);
+$sub-color: #eee;
+$sub-light-color: lighten($sub-color,30%);
+$sub-dark-color: darken($sub-color,30%);
+
+$header-background-color: rgba(245,245,245,.2);
+$nav-dark-color: #333333;
+$nav-light-color: #e7e7e7;
+$border-color: rgba(100,100,100,.2);
+$thead-bg-color: #4b4b4b;
+$table-border-color: #d7d7d7;
+// 変数 path
+$img-path: "../img/";
+
+// mixin (ベンダープレフィックスが必要なもの)
+@mixin transition($value) {
+	@each $prefix in $prefixList {
+		#{$prefix}transition: $value;
+	}
+}
+@mixin border-radius($value: 3px) {
+	@each $prefix in $prefixList {
+		#{$prefix}border-radius: $value;
+	}
+}
+@mixin box-shadow($value...) {
+	@each $prefix in $prefixList {
+		#{$prefix}box-shadow: $value;
+	}
+}
+@mixin text-shadow($value...) {
+	@each $prefix in $prefixList {
+		#{$prefix}text-shadow: $value;
+	}
+}
+@mixin animation($value...) {
+	@each $prefix in $prefixList {
+		#{$prefix}animation: $value;
+	}
+}
+
+// mixin アニメーション keyframe
+@mixin keyframes($animename) {
+	@-webkit-keyframes $animename {
+		@content;
+	}
+	@-moz-keyframes $animename {
+		@content;
+	}
+	@-o-keyframes $animename {
+		@content;
+	}
+	@-ms-keyframes $animename {
+		@content;
+	}
+	@keyframes $animename {
+		@content;
+	}
+}
+
+//mixin リンクカラー
+@mixin link-color($normal-color:$accent-color) {
+	color: $normal-color;
+	&:visited {
+		color: darken($normal-color, 10%);
+		text-decoration: none;
+	}
+	&:hover {
+		color: lighten($normal-color, 10%);
+		text-decoration: none;
+	}
+}
+
+//mixin グラデーション
+@mixin linear-gradient($color:#f00,$way:top,$percent:20%) {
+	background-color: $color;
+	background-image: -webkit-linear-gradient(to $way,$color 0%,lighten($color, $percent) 100%);
+	background-image: -moz-linear-gradient(to $way,$color 0%,lighten($color, $percent) 100%);
+	background-image: linear-gradient(to $way,$color 0%,lighten($color, $percent) 100%);
+}
+
+// extend
+%clearfix {
+	content: "";
+	clear: both;
+	display: block;
+}
+
+@for $i from 8 through 80 {
+	%fz#{$i} {
+		font-size: $i + px;
+		font-size: ($i / 10) * 1rem;
+	}
+}
+
+// @function
+@function mizzy-halfsize($value) {
+	@return ($value / 2);
+}

@@ -1,0 +1,1035 @@
+@charset "UTF-8";
+//使うcssを書く
+/* /////////////////////////////
+///													 ///
+///このCSSはSCSSで書かれています///
+///													 ///
+//////////////////////////////*/
+//背景画像の設定
+body {
+	background-image: url("../img/background.jpg"); // 全体の背景画像
+	background-repeat: no-repeat;            // 背景を繰り返さない
+	background-position: 50% 50%;            // 背景画像の位置は画面中央
+	background-attachment: fixed;          // 背景画像を固定する
+	background-size: cover;										//背景画像の大きさを固定
+}
+// ヘッダー
+header {
+	width: 100%;
+	padding: .6rem 0;
+	background-color: $header-background-color;
+	box-sizing: border-box;
+	font-size: 1.3rem;
+	font-family: sans-serif;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 9999;
+	h1 {
+		width: 40%;
+		padding: 1.8rem 10% 1.6rem;
+		box-sizing: border-box;
+		text-align: center;
+		font-size: 1.6rem;
+		letter-spacing: .8rem;
+		float: left;
+		cursor: pointer;
+		&:hover {
+			text-decoration: underline;
+		}
+		span {
+			padding-right: .8rem;
+			font-size: .6rem;
+			letter-spacing: normal;
+		}
+	}
+	nav {
+		width: 60%;
+		padding: 0 10% 0 10%;
+		box-sizing: border-box;
+		float: left;
+		ul {
+			width: 100%;
+			li {
+				width: 15%;
+				margin-right: 2%;
+				padding: 1.8rem .6rem 1.6rem;
+				box-sizing: border-box;
+				float: left;
+				text-align: center;
+				&:last-child {
+					margin-right: 0;
+				}
+				a {
+					color: $main-color;
+					display: block;
+					&:hover {
+						color: $main-light-color;
+						text-decoration: underline;
+					}
+				}
+			}
+			&::after {
+				@extend %clearfix;
+			}
+		}
+	}
+	&::after {
+		@extend %clearfix;
+	}
+}
+
+// @media header
+@media screen and (max-width: 768px) {
+	header {
+		padding: 0 5%;
+		position: relative;
+		h1 {
+			width: 100%;
+		}
+		nav {
+			width: 100%;
+			padding: 0;
+			ul { 
+				padding: 0;
+				li {
+					width: 15%;
+					padding: .8rem 0;
+					font-size: .8rem;
+					text-align: center;
+				}
+			}
+		}
+	}
+}
+
+.firstView {
+	width: 45%;
+	margin: 20vh auto 0;
+	display: block;
+}
+
+@media screen and (max-width: 768px) {
+	.firstView {
+		width: 45%;
+		margin: 10vh auto 0;
+		display: block;
+	}
+} 
+
+dl.topics {
+	width: 45%;
+	margin: 3rem auto;
+	background-color: $header-background-color;
+	box-sizing: border-box;
+	font-size: 1.3rem;
+	font-family: sans-serif;
+	dt,
+	dd {
+		padding: 1.3rem 2.6rem;
+		float: left;
+	}
+	dt {
+		border-right: 2px solid $border-color;
+	}
+	dd {
+		a {
+			color: $main-color;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+	&::after {
+		@extend %clearfix;
+	}
+}
+
+// @media dl.topics
+@media screen and (max-width: 768px) {
+	dl.topics {
+		width: 70%;
+	}
+}
+
+main {
+	>section {
+		width: 100vw;
+		min-height: 100vh;
+		height: auto;
+		padding: 11rem 10%;
+		margin: 11rem 0 25vh;
+		background-color: #fff;
+		box-sizing: border-box;
+		h2 {
+			padding: 0;
+			font-size: 4.5rem;
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	main {
+		section {
+			padding: 4rem 5%;
+			h2 {
+				font-size: 3rem;
+			}
+		}
+	}
+}
+
+// COMPANY
+#COMPANY {
+	nav {
+		width: 40%;
+		margin-bottom: 5rem;
+		font-size: 1.3rem;
+		float: right;
+		ul {
+			li {
+				width: 33.3%;
+				padding: 1.3rem .8rem;
+				background-color: $nav-light-color;
+				border-left: 1px solid #fff;
+				box-sizing: border-box;
+				color: $main-color;
+				text-align: center;
+				float: left;
+				transition: .6s ease;
+				cursor: pointer;
+				&.on {
+					background-color: $nav-dark-color;
+					color: white;
+				}
+				&:hover {
+					background-color: $nav-dark-color;
+					color: white;
+				}
+			}
+			&::after {
+				@extend %clearfix;
+			}
+		}
+	}
+	&::after {
+		@extend %clearfix;
+	}
+	// スライダー
+	#companySlider{
+		width: 100%;
+		height: auto;
+		min-height: 66rem;
+		margin-top: 3rem;
+		position: relative;
+		overflow: hidden;
+		>div {
+			width: 100%;
+			margin-right: 10%;
+			background-color: white;
+			opacity: 0;
+			position: absolute;
+			top: 0;
+			transition: .4s ease;
+		}
+		#companyIdea {
+			transform: translateX(150%);
+			z-index: 1;
+			&.on {
+				transform: translateX(0);
+				opacity: 1;
+			}
+			img.logo {
+				width: 35%;
+				margin-top: 11rem;
+				margin-right: 5%;
+				float: left;
+			}
+			img.companyPresidentImg {
+				width: 60%;
+			}
+			p {
+				width: 60%;
+				margin-top: 3rem;
+				font-size: 1.3rem;
+				font-family: sans-serif;
+				line-height: 2;
+				float: right;
+			}
+			p.companyPresident {
+				margin-top: 2rem;
+				line-height: 2;
+				text-align: right;
+			}
+			&::after {
+				@extend %clearfix;
+			}
+		}
+		#companyOverview {
+			transform: translateX(150%);
+			z-index: 2;
+			&.on {
+				opacity: 1;
+				transform: translateX(0);
+			}
+			dl {
+				width: 47.5%;
+				box-sizing: border-box;
+				font-size: 1.3rem;
+				text-align: left;
+				float: left;
+				&:nth-child(even) {
+					margin-left: 2.5%;
+				}
+				&:nth-child(odd) {
+					margin-right: 2.5%;
+				}
+				dt,dd {
+					margin-bottom: 2rem;
+					float: left;
+				}
+				dt {
+					width: 15%;
+					font-weight: bold;
+				}
+				dd {
+					width: 85%;
+					&.Advertisement {
+						p {
+							width: 50%;
+							float: left;
+						}
+						&::after {
+							@extend %clearfix;
+						}
+					}
+					p {
+						padding-bottom: 1.3rem;
+						box-sizing: border-box;
+						&::last-child {
+							padding-bottom: 0;
+						}
+					}
+				}
+				&::after {
+					@extend %clearfix;
+				}
+			}
+		}
+		#companyOrganization {
+			transform: translateX(150%);
+			z-index: 3;
+			&.on {
+				opacity: 1;
+				transform: translateX(0);
+			}
+			img {
+				width: 100%;
+			}
+		}
+	}
+}
+// @media #COMPANY
+@media screen and (max-width: 768px) {
+	#COMPANY {
+		nav {
+			width: 100%;
+			margin: 3rem 0;
+			ul {
+				li {
+					width: 33.3%;
+				}
+			}
+		}
+		#companySlider{
+			min-height: 141rem;
+			>div {
+				margin-right: 0;
+			}
+			#companyIdea {
+				img.logo {
+					display: none;
+				}
+				img.companyPresidentImg {
+					width: 100%;
+				}
+				p {
+					width: 100%;
+					margin-top: 1rem;
+					font-size: 1.3rem;
+					font-family: sans-serif;
+					line-height: 2;
+					float: none;
+				}
+				p.companyPresident {
+					margin-top: 2rem;
+					line-height: 2;
+					text-align: right;
+				}
+			}
+			#companyOverview {
+				dl {
+					width: 100%;
+					box-sizing: border-box;
+					font-size: 1.3rem;
+					text-align: left;
+					float: none;
+					&:nth-child(even) {
+						margin-left: 0%;
+					}
+					&:nth-child(odd) {
+						margin-right: 0%;
+					}
+					dt,dd {
+						margin-bottom: 2rem;
+						float: left;
+					}
+					dt {
+						width: 25%;
+						font-weight: bold;
+					}
+					dd {
+						width: 75%;
+						&.Advertisement {
+							p {
+								width: 100%;
+								float: left;
+							}
+						}
+						p {
+							padding-bottom: 1.3rem;
+							box-sizing: border-box;
+							a {
+								color: $main-color;
+								text-decoration: underline;
+							}
+						}
+					}
+				}
+			}
+//			#companyOrganization {
+//				
+//			}
+		}
+	}
+}
+
+// WORKS
+#WORKS {
+	table {
+		width: 47.5%;
+		margin-top: 8rem;
+		box-sizing: border-box;
+		font-size: 1.3rem;
+		float: left;
+		&:nth-child(odd) {
+			margin-left: 2.5%;
+		}
+		&:nth-child(even) {
+			margin-right: 2.5%;
+		}
+		thead {
+			tr {
+				background-color: #b7b7b7;
+				text-align: left;
+				th {
+					padding: .7rem;
+					background-color: $thead-bg-color;
+					border-left: 2px solid $table-border-color;
+					color: white;
+					&:first-child {
+						border-left-width: 0;
+					}
+				}
+			}
+		}
+		tbody {
+			tr {
+				border-bottom: 2px solid $table-border-color;
+				&:first-child > td {
+					padding-top: 2rem;
+				}
+				td {
+					padding: 1rem .7rem;
+				}
+			}
+		}
+	}
+	p {
+		padding: 1.8rem 0;
+		font-size: 1.3rem;
+		float: right;
+	}
+	&::after {
+		@extend %clearfix;
+	}
+}
+
+// @media #WORKS
+@media screen and (max-width: 768px) {
+	#WORKS {
+		table {
+			width: 100%;
+			margin: 3rem 0;
+			float: none;
+			&:nth-child(odd) {
+				margin-left: 0;
+			}
+			&:nth-child(even) {
+				margin-right: 0;
+			}
+			thead {
+				tr {
+					background-color: #b7b7b7;
+					text-align: left;
+					th {
+						padding: .7rem .3rem;
+					}
+				}
+			}
+			tbody {
+				tr {
+					&:first-child > td {
+						padding-top: 2rem;
+					}
+				}
+			}
+		}
+		p {
+			padding: .9rem 0;
+			font-size: 1rem;
+			float: right;
+		}
+	}
+}
+
+// STAFF
+#STAFF {
+	h2 {
+		margin-bottom: 8rem;
+	}
+	section {
+		width: 100%;
+		margin-top: 3rem;
+		h3 {
+			padding: .5rem 0;
+			font-size: 1.5rem;
+			font-weight: bold;
+		}
+		.staffBox {
+			width: 15%;
+			margin-top: 1.5rem;
+			margin-right: 2%;
+			box-sizing: border-box;
+			float: left;
+			@media screen and (min-width: 769px) { 
+				&:nth-child(6n + 1){
+					margin-right: 0;
+				}
+			}
+			img {
+				width: 100%;
+				filter: grayscale(100%);
+				-webkit-filter: grayscale(100%);
+				-moz-filter: grayscale(100%);
+				-ms-filter: grayscale(100%);
+				-o-filter: grayscale(100%);
+				transition: .4s ease;
+				&:hover {
+					filter: grayscale(0%);
+					-webkit-filter: grayscale(0%);
+					-moz-filter: grayscale(0%);
+					-ms-filter: grayscale(0%);
+					-o-filter: grayscale(0%);
+				}
+			}
+			p {
+				padding: .5rem 0;
+				font-size: 1.3rem;
+				text-align: left;
+			}
+		}
+		&::after {
+			@extend %clearfix;
+		}
+	}
+}
+
+// @media #STAFF
+@media screen and (max-width: 768px) {
+	#STAFF {
+		h2 {
+			margin-bottom: 2rem;
+		}
+		section {
+			width: 100%;
+			margin-top: 3rem;
+			padding: 0;
+			.staffBox {
+				width: 22%;
+				margin-top: 1.5rem;
+				margin-right: 4%;
+				box-sizing: border-box;
+				float: left;
+				&:nth-child(4n + 1){
+					margin-right: 0;
+				}
+				p {
+					font-size: 1.1rem;
+				}
+			}
+		}
+	}
+}
+
+// RECRUIT
+#RECRUIT {
+	nav {
+		width: 40%;
+		margin-bottom: 6.5rem;
+		font-size: 1.3rem;
+		float: right;
+		ul {
+			li {
+				width: 33.3%;
+				padding: 1.3rem .8rem;
+				background-color: $nav-light-color;
+				border-left: 1px solid #fff;
+				box-sizing: border-box;
+				color: $main-color;
+				text-align: center;
+				float: left;
+				transition: .4s ease;
+				cursor: pointer;
+				&.on {
+					background-color: $nav-dark-color;
+					color: white;
+				}
+				&:hover {
+					background-color: $nav-dark-color;
+					color: white;
+				}
+			}
+			&::after {
+				@extend %clearfix;
+			}
+		}
+	}
+	#recruitSlider {
+		width: 100%;
+		height: auto;
+		min-height: 69rem;
+		margin-top: 3rem;
+		position: relative;
+		overflow: hidden;
+		>div {
+			width: 100%;
+			margin-right: 10%;
+			background-color: white;
+			opacity: 0;
+			position: absolute;
+			top: 0;
+			transition: .4s ease;
+		}
+		#recruitment {
+			transform: translateX(150%);
+			z-index: 1;
+			&.on {
+				transform: translateX(0);
+				opacity: 1;
+			}
+			dl {
+			width: 50%;
+			margin-top: 1rem;
+			margin-right: 5%;
+			font-size: 1.3rem;
+			float: left;
+			dt,
+			dd {
+				float: left;
+				margin-bottom: 1.8rem;
+			}
+			dt {
+				width: 25%;
+				font-weight: bold;
+			}
+			dd {
+				width: 75%;
+				p {
+					padding-bottom: 1.2rem;
+					a {
+						color: $main-color;
+						text-decoration: underline;
+					}
+				}
+			}
+			&::after {
+				@extend %clearfix;
+			}
+			}
+			address {
+				width: 45%;
+				padding: 1.6rem 3rem;
+				background-color: #f5f5f5;
+				box-sizing: border-box;
+				float: left;
+				h3,p {
+					font-size: 1.3rem;
+					font-style: normal;
+					line-height: 2;
+				}
+				h3 {
+					margin-bottom: 1rem;
+					font-weight: bold;
+				}
+				p {
+					a {
+						color: $main-color;
+						text-decoration: underline;
+					}
+				}
+			}
+			&::after {
+				@extend %clearfix;
+			}
+		}
+		#recruitMember {
+			transform: translateX(150%);
+			z-index: 2;
+			&.on {
+				transform: translateX(0);
+				opacity: 1;
+			}
+			article {
+				width: 30%;
+				float: left;
+				&:nth-child(odd) {
+					margin-left: 15%;
+					margin-right: 5%;
+				}
+				&:nth-child(even) {
+					margin-left: 5%;
+					margin-right: 15%;
+				}
+				img {
+					width: 100%;
+					margin: 2rem 0;
+				}
+				h3 {
+					font-size: 2rem;
+					font-weight: normal;
+					line-height: 2;
+				}
+				h4 {
+					margin: 1.5rem 0;
+					font-weight: bold;
+					line-height: 2;
+				}
+				p {
+					font-size: 1.6rem;
+					line-height: 1.8;
+				}
+				ul {
+					list-style: disc;
+					list-style-position: inside;
+					li {
+						padding: .8rem 0;
+						font-size: 1.6rem;
+					}
+				}
+			}
+			&::after {
+				@extend %clearfix;
+			}
+		}
+		#recruitVideo {
+			transform: translateX(150%);
+			z-index: 3;
+			&.on {
+				transform: translateX(0);
+				opacity: 1;
+			}
+			img {
+				width: 80%;
+				margin: auto;
+				display: block;
+			}
+		}
+	}
+}
+// @media #RECRUIT
+@media screen and (max-width: 768px) {
+	#RECRUIT {
+		nav {
+			width: 100%;
+			margin: 3rem 0;
+			font-size: 1.1rem;
+			float: none;
+		}
+		#recruitSlider {
+			min-height: 108rem;
+			#recruitment {
+				dl {
+					width: 100%;
+					margin: 3rem 0 2rem;
+					font-size: 1.3rem;
+					float: none;
+					dt,
+					dd {
+						margin-bottom: 1.5rem;
+					}
+					dt {
+						width: 25%;
+						font-weight: bold;
+					}
+					dd {
+						width: 75%;
+						p {
+							padding-bottom: 1.1rem;
+							line-height: 1.4;
+						}
+					}
+				}
+				address {
+					width: 100%;
+					padding: 1.6rem 3rem;
+					margin: 2rem 0;
+					box-sizing: border-box;
+					float: none;
+				}
+			}
+			#recruitMember {
+				transform: translateX(150%);
+				z-index: 2;
+				&.on {
+					transform: translateX(0);
+					opacity: 1;
+				}
+				article {
+					width: 100%;
+					margin: auto;
+					float: none;
+					&:nth-child(odd) {
+						margin-left: auto;
+						margin-right: auto;
+					}
+					&:nth-child(even) {
+						margin-left: auto;
+						margin-right: auto;
+					}
+					img {
+						width: 100%;
+						margin: 2rem 0;
+					}
+					h3 {
+						font-size: 1.6rem;
+						font-weight: normal;
+						line-height: 1.7;
+					}
+					h4 {
+						margin: 1.3rem 0;
+						font-weight: bold;
+						line-height: 2;
+					}
+					p {
+						font-size: 1.2rem;
+						line-height: 1.8;
+					}
+					ul {
+						list-style: disc;
+						list-style-position: inside;
+						li {
+							padding: .6rem 0;
+							font-size: 1.2rem;
+						}
+					}
+				}
+			}
+//			#recruitVideo {
+//			}
+		}
+	}
+}
+
+// ACCESS
+#ACCESS {
+	margin-bottom: 0;
+	section {
+		width: 47.5%;
+		margin-top: 8rem;
+		box-sizing: border-box;
+		font-size: 1.3rem;
+		float: left;
+		&:nth-child(odd) {
+			margin-left: 2.5%;
+		}
+		&:nth-child(even) {
+			margin-right: 2.5%;
+		}
+		h3 {
+			width: 62%;
+			margin: 3rem 0;
+			font-size: 2rem;
+			letter-spacing: 1rem;
+			float: left;
+			span {
+				font-size: 1rem;
+				letter-spacing: normal;
+			}
+		}
+		p.map {
+			width: 38%;
+			margin: 3rem 0;
+			font-size: 1.2rem;
+			text-align: right;
+			line-height: 1;
+			float: left;
+			clear: none;
+			a {
+				padding: .8rem 1rem .8rem 2rem; 
+				background-color: $main-light-color;
+				box-sizing: border-box;
+				color: white;
+				position: relative;
+				transition: .4s ease;
+				&:hover {
+					background-color: $main-color;
+				}
+				&::after {
+					width: 0;
+					height: 0;
+					border: 5px solid transparent {
+						left: 5px solid white;
+						};
+					content: "";
+					position: absolute;
+					top: .9rem;
+					left: 1rem;
+				}
+			}
+		}
+		iframe {
+			width: 100%;
+			margin: 2rem 0;
+		}
+		p {
+			line-height: 2;
+			clear: both;
+		}
+		dl {
+			margin-top: 2.5rem;
+			dt {
+				margin-bottom: 1rem;
+				font-weight: bold;
+			}
+			dd {
+				margin-bottom: 2.5rem;
+			}
+		}
+	}
+	&::after {
+		@extend %clearfix;
+	}
+}
+
+// @media #ACCESS
+@media screen and (max-width: 768px) {
+	#ACCESS {
+		section {
+			width: 100%;
+			margin: 2rem 0;
+			padding: 1rem 0;
+			float: none;
+			&:nth-child(odd) {
+				margin-left: 0;
+			}
+			&:nth-child(even) {
+				margin-right: 0;
+			}
+		}
+	}
+}
+
+// topButton
+#topButton {
+	width: 9rem;
+	height: 9rem;
+	margin: 5rem auto;
+	background-color: $nav-dark-color;
+	border-radius: 50%;
+	color: white;
+	font-size: 1rem;
+	text-align: center;
+	transition: .4s ease;
+	cursor: pointer;
+	&:hover {
+		background-color: lighten($nav-dark-color, 5%);
+	}
+	img {
+		width: 2rem;
+		margin-top: 2.5rem;
+		margin-bottom: 1.5rem;
+	}
+}
+
+// footer
+footer {
+	padding: 1.3rem;
+	box-sizing: border-box;
+	background-color: $nav-dark-color;
+	p {
+		padding: 0 2rem;
+		box-sizing: border-box;
+		color: white;
+		font-size: 1.3rem;
+		text-align: left;
+		float: left;
+		&.footerLink {
+			width: 25%;
+			&:first-child {
+				text-align: right;
+			}
+			a {
+				color: white;
+				position: relative;
+				&:hover {
+					text-decoration: underline;
+				}
+				&::after {
+					width: 0;
+					height: 0;
+					border: 4px solid transparent {
+						left: 4px solid white;
+						};
+					content: "";
+					position: absolute;
+					top: .2rem;
+					left: -1rem;
+				}
+			}
+		}
+	}
+	&::after {
+		@extend %clearfix;
+	}
+}
+
+// @media footer
+@media screen and (max-width: 768px) {
+	footer {
+		p {
+			padding: .4rem;
+			font-size: .8rem;
+			text-align: left;
+			float: none;
+			&.footerLink {
+				width: 100%;
+				padding-left: 1.6rem;
+				&:first-child {
+					text-align: left;
+				}
+			}
+		}
+	}
+}
